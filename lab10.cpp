@@ -15,10 +15,10 @@ double gStack(unsigned);
  * Starting point of the program. Calls two functions in two different ways:
  * recursive and iterative. The outputs for both function calls should match
  * exactly.
- * 
+ *
  * Input:
  * N/A
- * 
+ *
  * Output:
  * An integer to signal to the OS the exit code.
 *******************************************************************************/
@@ -42,10 +42,10 @@ int main() {
  * Description:
  * Recursive function that calculates a result. Displays a message when a base
  * case is reached.
- * 
+ *
  * Input:
  * i - an unsigned value that determines whether or not this is a base case
- * 
+ *
  * Output:
  * The result of 1.1n + 3.2, where n is the depth of recursion
 *******************************************************************************/
@@ -55,7 +55,7 @@ double gRec(unsigned i) {
         cout << "Base case!\n";
         return 3.2;
     }
-    
+
     return gRec(i - 1) + 1.1;
 }
 
@@ -63,14 +63,29 @@ double gRec(unsigned i) {
  * Description:
  * Iterative function that simulates recursion using a stack. Calculates a
  * result. Displays a message when a base case is reached.
- * 
+ *
  * Input:
  * i - an unsigned value that determines whether or not this is a base case
- * 
+ *
  * Output:
  * The result of 1.1n + 3.2, where n is the depth of recursion
 *******************************************************************************/
 
 double gStack(unsigned i) {
-    // TODO
+    ArrayStack<unsigned> stk(100);
+
+    while (i > 0) {
+        stk.push(i);
+        i--;
+    }
+
+    cout << "Base case!\n";
+    double result = 3.2;
+
+    while (!stk.isEmpty()) {
+        stk.pop();
+        result = result + 1.1;
+    }
+
+    return result;
 }
